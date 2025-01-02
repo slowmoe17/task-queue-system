@@ -1,0 +1,20 @@
+{
+  "name": "taskqueue",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bullmq": "^5.34.6",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "ioredis": "^5.4.2",
+    "nodemon": "^3.1.9"
+  }
+}
