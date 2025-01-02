@@ -1,0 +1,43 @@
+1. Task Queue Management
+============================
+i have designed the task queue system using BullMQ, a powerful and flexible job and task queue library that integrates seamlessly with Redis. The queue system ensures efficient management of background tasks by decoupling task submission from task processing.
+
+Why BullMQ?
+================================
+Reliability: BullMQ is built on top of Redis, a robust, fast, and scalable in-memory data structure store.
+Features: It supports job retries, delayed jobs, and scheduling, all of which are crucial for managing background tasks in a production environment.
+Scalability: BullMQ can handle high throughput and large volumes of tasks with minimal configuration, making it suitable for enterprise-level applications.
+
+2. Task Queue Design
+=====================
+The queue system includes two main components:
+
+API Endpoints: Accept tasks and place them into the queue.
+Worker Logic: Processes the tasks from the queue asynchronously.
+Why this structure?
+Separation of Concerns: The API only handles accepting and adding tasks, while the worker is responsible for task processing. This helps in maintaining a clean and scalable architecture.
+Async Task Processing: Tasks are processed asynchronously, which prevents blocking the main application thread and allows for better performance and scalability.
+
+
+
+3. Task Handling and Response Structure
+=============================================
+When a task is successfully added to the queue, the API responds with a status message and the job.id.
+
+Why Include job.id?
+Tracking and Auditing: The job.id allows both the system and the users to track and audit tasks throughout their lifecycle, from creation to completion or failure.
+Job Management: The unique job.id is essential for querying job statuses, logging, or interacting with tasks via additional API endpoints.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
