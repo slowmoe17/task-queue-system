@@ -3,7 +3,10 @@ const taskController = require('../controllers/taskController');
 
 const router = express.Router();
 
+router.get('/', taskController.getMetrics);
+
 router.post('/tasks', taskController.addTask);
+
 
 router.get('/dlq', taskController.viewDLQ);
 
