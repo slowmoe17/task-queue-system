@@ -40,3 +40,26 @@ exports.clearDLQ = async (req, res) => {
     res.status(500).json({ error: 'Failed to clear DLQ' });
   }
 };
+
+exports.getMetrics = async (req, res) => {
+    try {
+      const completedJobsCount = await taskQueue.getCompletedCount();
+      const queueSize = await taskQueue.getWaitingCount();
+      const retryCount = await taskQueue.getDelayedCount();
+      const failedJobsCount = await taskQueue.getFailedCount();
+  
+      res.status(200).json({
+        status: "success",
+        message : 'Metrics fetched successfully',
+        data: {
+                totalTasksProcessed: completedJobsCount,
+                currentQueueSize: queueSize,
+                retries: retryCount,
+                dlqSize: failedJobsCount,
+        }
+      });
+     
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch metrics' });
+    }
+  };
